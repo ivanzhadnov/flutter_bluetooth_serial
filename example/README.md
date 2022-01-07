@@ -14,7 +14,7 @@ Example application demonstrates key features of the `flutter_bluetooth_serial` 
 
 + Connecting to multiple devices at the same time,
 
-+ Sending and recieving data (multiple connections).
++ Sending and receiving data (multiple connections).
 
 The plugin (for now) uses Serial Port profile for moving data over RFCOMM, so make sure there is running Service Discovery Protocol that points to SP/RFCOMM channel of the device.
 
