@@ -1,3 +1,8 @@
+## [1.0.0] - 2022-01-07
+
+Fixing the missing devices when discovering for the first time.
+Location permission not required for bonded devices.
+
 ## [0.4.0] - 2021-08-17
 
 Update flutter plugin v2.

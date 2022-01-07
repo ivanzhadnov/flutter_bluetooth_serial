@@ -54,10 +54,15 @@ public abstract class BluetoothConnection
         // Cancel discovery, even though we didn't start it
         bluetoothAdapter.cancelDiscovery();
 
-        socket.connect();
+        try {
+            socket.connect();
 
-        connectionThread = new ConnectionThread(socket);
-        connectionThread.start();
+            connectionThread = new ConnectionThread(socket);
+            connectionThread.start();
+        }
+        catch (Exception e) {
+            throw new IOException("socket connection failed");
+        }
     }
     /// Connects to given device by hardware address (default UUID used)
     public void connect(String address) throws IOException {
