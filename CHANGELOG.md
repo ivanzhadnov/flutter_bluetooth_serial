@@ -1,3 +1,9 @@
+## [1.0.1] - 2022-07-29
+
+PR from bswhite1:
+
+* Updates for android 12
+
 ## [1.0.0] - 2022-01-07
 
 Fixing the missing devices when discovering for the first time.

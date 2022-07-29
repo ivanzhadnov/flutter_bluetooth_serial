@@ -599,9 +599,16 @@ public class FlutterBluetoothSerialPlugin implements FlutterPlugin, ActivityAwar
 
                 case "requestEnable":
                     if (!bluetoothAdapter.isEnabled()) {
-                        pendingResultForActivityResult = result;
-                        Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                        ActivityCompat.startActivityForResult(activity, intent, REQUEST_ENABLE_BLUETOOTH, null);
+                        ensurePermissions(granted -> {
+                            if (!granted) {
+                                result.error("no_permissions", "Enabling bluetooth requires bluetooth permission", null);
+                                return;
+                            }
+
+                            pendingResultForActivityResult = result;
+                            Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                            ActivityCompat.startActivityForResult(activity, intent, REQUEST_ENABLE_BLUETOOTH, null);
+                        });
                     } else {
                         result.success(true);
                     }
@@ -609,8 +616,15 @@ public class FlutterBluetoothSerialPlugin implements FlutterPlugin, ActivityAwar
 
                 case "requestDisable":
                     if (bluetoothAdapter.isEnabled()) {
+                        ensurePermissions(granted -> {
+                            if (!granted) {
+                                result.error("no_permissions", "Enabling bluetooth requires bluetooth permission", null);
+                                return;
+                            }
+
                         bluetoothAdapter.disable();
                         result.success(true);
+                        });
                     } else {
                         result.success(false);
                     }
@@ -630,6 +644,7 @@ public class FlutterBluetoothSerialPlugin implements FlutterPlugin, ActivityAwar
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
                         address = bluetoothAdapter.getAddress();
                     }
+                    // else Local Bluetooth MAC address is hidden by system in newer releases.
 
                     if (address.equals("02:00:00:00:00:00")) {
                         Log.w(TAG, "Local Bluetooth MAC address is hidden by system, trying other options...");
