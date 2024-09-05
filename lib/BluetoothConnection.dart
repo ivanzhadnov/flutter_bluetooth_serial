@@ -91,7 +91,7 @@ class BluetoothConnection {
 }
 
 /// Helper class for sending responses.
-class BluetoothStreamSink<Uint8List> extends StreamSink<Uint8List> {
+class BluetoothStreamSink<Uint8List> implements StreamSink<Uint8List> {
   final int? _id;
 
   /// Describes is stream connected.
