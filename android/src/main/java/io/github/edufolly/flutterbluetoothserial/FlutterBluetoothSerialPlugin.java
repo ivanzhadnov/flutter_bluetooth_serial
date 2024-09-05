@@ -269,8 +269,9 @@ public class FlutterBluetoothSerialPlugin implements FlutterPlugin, ActivityAwar
                 switch (action) {
                     case BluetoothDevice.ACTION_FOUND:
                         final BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                        //final BluetoothClass deviceClass = intent.getParcelableExtra(BluetoothDevice.EXTRA_CLASS); // @TODO . !BluetoothClass!
-                        //final String extraName = intent.getStringExtra(BluetoothDevice.EXTRA_NAME); // @TODO ? !EXTRA_NAME!
+
+                        int deviceClass = device.getBluetoothClass().getDeviceClass();
+
                         final int deviceRSSI = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE);
 
                         Map<String, Object> discoveryResult = new HashMap<>();
@@ -281,6 +282,7 @@ public class FlutterBluetoothSerialPlugin implements FlutterPlugin, ActivityAwar
                         discoveryResult.put("isConnected", checkIsDeviceConnected(device));
                         discoveryResult.put("bondState", device.getBondState());
                         discoveryResult.put("rssi", deviceRSSI);
+                        discoveryResult.put("deviceClass", deviceClass);
 
                         Log.d(TAG, "Discovered " + device.getAddress());
                         if (discoverySink != null) {
@@ -939,6 +941,9 @@ public class FlutterBluetoothSerialPlugin implements FlutterPlugin, ActivityAwar
                         entry.put("type", device.getType());
                         entry.put("isConnected", checkIsDeviceConnected(device));
                         entry.put("bondState", BluetoothDevice.BOND_BONDED);
+
+                        int deviceClass = device.getBluetoothClass().getDeviceClass();
+                        entry.put("deviceClass", deviceClass);
                         list.add(entry);
                     }
 
