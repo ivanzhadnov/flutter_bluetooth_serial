@@ -1,7 +1,26 @@
+## [1.1.0] - 2024-09-05
+
+PR from radomir9720:
+* made _BluetoothStreamSink public
+
+PR from JordanHanley:
+* Improve README.md
+
+PR from sumit-bounce:
+* Added device class, major, minor, proper device icon
+
+PR from kasutu:
+* Create ADRESS_PARAM.md
+
+PR from thide11:
+* Android 12 'nearby devices' permission support
+
+PR from VaclavKosak:
+* Upgrade flutter version
+
 ## [1.0.1] - 2022-07-29
 
 PR from bswhite1:
-
 * Updates for android 12
 
 ## [1.0.0] - 2022-01-07

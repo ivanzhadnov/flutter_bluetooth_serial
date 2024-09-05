@@ -55,7 +55,7 @@ será apreciada. Obrigado pelo seu apoio contínuo!
 # Add dependency to `pubspec.yaml` of your project.
 dependencies:
   # ...
-  flutter_bluetooth_serial: ^1.0.1
+  flutter_bluetooth_serial: ^1.1.0
 ```
 
 #### Installing
