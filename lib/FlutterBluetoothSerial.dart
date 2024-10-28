@@ -277,4 +277,14 @@ class FlutterBluetoothSerial {
       return false;
     }
   }
+
+  Future<bool?> connectToGarminGLO() async {
+    try {
+      final bool result = await _methodChannel.invokeMethod('connectToGarminGLO');
+      return result;
+    } catch (e) {
+      print("Ошибка подключения к XGPS160: $e");
+      return false;
+    }
+  }
 }
